@@ -1,0 +1,32 @@
+// clux M1 语法高亮示例
+/* 块注释
+   可嵌套注释 */
+
+func fib(n: i32): i32 {
+    if n <= 1 { return n; }
+    return fib(n - 1) + fib(n - 2);
+}
+
+func main() {
+    var a: i32 = 42;
+    var b: u64 = 0xFFu8;
+    var c: f64 = 3.14e10f64;
+    var d = 0b1010 + 0o17;
+    var s = "hello\tworld\x41";
+    var ch = 'z';
+    var ok = true && !false;
+    var u = undefined;
+
+    for a = 0; a < 10; a += 1 {
+        if ok { continue; }
+        else { break; }
+    }
+
+    while a > 0 {
+        a -= 1;
+        _ = fib(a);
+    }
+
+    const LIMIT: i32 = 100;
+    volatile x: i32 = 1;
+}

@@ -1,0 +1,549 @@
+{
+ "allowComments": true,
+ "allowTrailingCommas": true,
+ "default": {
+  "comments": {
+   "blockComment": [
+    "/*",
+    "*/"
+   ],
+   "lineComment": "//"
+  },
+  "brackets": [
+   [
+    "(",
+    ")"
+   ],
+   [
+    "[",
+    "]"
+   ],
+   [
+    "{",
+    "}"
+   ]
+  ],
+  "autoClosingPairs": [
+   [
+    "(",
+    ")"
+   ],
+   [
+    "[",
+    "]"
+   ],
+   [
+    "{",
+    "}"
+   ]
+  ],
+  "surroundingPairs": [
+   [
+    "(",
+    ")"
+   ],
+   [
+    "[",
+    "]"
+   ],
+   [
+    "{",
+    "}"
+   ]
+  ]
+ },
+ "definitions": {
+  "openBracket": {
+   "type": "string",
+   "description": "desc#14425"
+  },
+  "closeBracket": {
+   "type": "string",
+   "description": "desc#14370"
+  },
+  "bracketPair": {
+   "type": "array",
+   "items": [
+    {
+     "$ref": "#/definitions/openBracket"
+    },
+    {
+     "$ref": "#/definitions/closeBracket"
+    }
+   ]
+  }
+ },
+ "properties": {
+  "comments": {
+   "default": {
+    "blockComment": [
+     "/*",
+     "*/"
+    ],
+    "lineComment": {
+     "comment": "//",
+     "noIndent": false
+    }
+   },
+   "description": "desc#14372",
+   "type": "object",
+   "properties": {
+    "blockComment": {
+     "type": "array",
+     "description": "desc#14368",
+     "items": [
+      {
+       "type": "string",
+       "description": "desc#14366"
+      },
+      {
+       "type": "string",
+       "description": "desc#14367"
+      }
+     ]
+    },
+    "lineComment": {
+     "type": "object",
+     "description": "desc#14403",
+     "properties": {
+      "comment": {
+       "type": "string",
+       "description": "desc#14401"
+      },
+      "noIndent": {
+       "type": "boolean",
+       "description": "desc#14402",
+       "default": false
+      }
+     },
+     "required": [
+      "comment"
+     ],
+     "additionalProperties": false
+    }
+   }
+  },
+  "brackets": {
+   "default": [
+    [
+     "(",
+     ")"
+    ],
+    [
+     "[",
+     "]"
+    ],
+    [
+     "{",
+     "}"
+    ]
+   ],
+   "markdownDescription": "desc#14369",
+   "type": "array",
+   "items": {
+    "$ref": "#/definitions/bracketPair"
+   }
+  },
+  "colorizedBracketPairs": {
+   "default": [
+    [
+     "(",
+     ")"
+    ],
+    [
+     "[",
+     "]"
+    ],
+    [
+     "{",
+     "}"
+    ]
+   ],
+   "markdownDescription": "desc#14371",
+   "type": "array",
+   "items": {
+    "$ref": "#/definitions/bracketPair"
+   }
+  },
+  "autoClosingPairs": {
+   "default": [
+    [
+     "(",
+     ")"
+    ],
+    [
+     "[",
+     "]"
+    ],
+    [
+     "{",
+     "}"
+    ]
+   ],
+   "description": "desc#14364",
+   "type": "array",
+   "items": {
+    "oneOf": [
+     {
+      "$ref": "#/definitions/bracketPair"
+     },
+     {
+      "type": "object",
+      "properties": {
+       "open": {
+        "$ref": "#/definitions/openBracket"
+       },
+       "close": {
+        "$ref": "#/definitions/closeBracket"
+       },
+       "notIn": {
+        "type": "array",
+        "description": "desc#14365",
+        "items": {
+         "enum": [
+          "string",
+          "comment"
+         ]
+        }
+       }
+      }
+     }
+    ]
+   }
+  },
+  "autoCloseBefore": {
+   "default": ";:.,=}])> \n\t",
+   "description": "desc#14363",
+   "type": "string"
+  },
+  "surroundingPairs": {
+   "default": [
+    [
+     "(",
+     ")"
+    ],
+    [
+     "[",
+     "]"
+    ],
+    [
+     "{",
+     "}"
+    ]
+   ],
+   "description": "desc#14426",
+   "type": "array",
+   "items": {
+    "oneOf": [
+     {
+      "$ref": "#/definitions/bracketPair"
+     },
+     {
+      "type": "object",
+      "properties": {
+       "open": {
+        "$ref": "#/definitions/openBracket"
+       },
+       "close": {
+        "$ref": "#/definitions/closeBracket"
+       }
+      }
+     }
+    ]
+   }
+  },
+  "wordPattern": {
+   "default": "",
+   "description": "desc#14427",
+   "type": [
+    "string",
+    "object"
+   ],
+   "properties": {
+    "pattern": {
+     "type": "string",
+     "description": "desc#14430",
+     "default": ""
+    },
+    "flags": {
+     "type": "string",
+     "description": "desc#14428",
+     "default": "g",
+     "pattern": "^([gimuy]+)$",
+     "patternErrorMessage": "desc#14429"
+    }
+   }
+  },
+  "indentationRules": {
+   "default": {
+    "increaseIndentPattern": "",
+    "decreaseIndentPattern": ""
+   },
+   "description": "desc#14384",
+   "type": "object",
+   "properties": {
+    "increaseIndentPattern": {
+     "type": [
+      "string",
+      "object"
+     ],
+     "description": "desc#14389",
+     "properties": {
+      "pattern": {
+       "type": "string",
+       "description": "desc#14392",
+       "default": ""
+      },
+      "flags": {
+       "type": "string",
+       "description": "desc#14391",
+       "default": "",
+       "pattern": "^([gimuy]+)$",
+       "patternErrorMessage": "desc#14390"
+      }
+     }
+    },
+    "decreaseIndentPattern": {
+     "type": [
+      "string",
+      "object"
+     ],
+     "description": "desc#14385",
+     "properties": {
+      "pattern": {
+       "type": "string",
+       "description": "desc#14388",
+       "default": ""
+      },
+      "flags": {
+       "type": "string",
+       "description": "desc#14387",
+       "default": "",
+       "pattern": "^([gimuy]+)$",
+       "patternErrorMessage": "desc#14386"
+      }
+     }
+    },
+    "indentNextLinePattern": {
+     "type": [
+      "string",
+      "object"
+     ],
+     "description": "desc#14393",
+     "properties": {
+      "pattern": {
+       "type": "string",
+       "description": "desc#14396",
+       "default": ""
+      },
+      "flags": {
+       "type": "string",
+       "description": "desc#14395",
+       "default": "",
+       "pattern": "^([gimuy]+)$",
+       "patternErrorMessage": "desc#14394"
+      }
+     }
+    },
+    "unIndentedLinePattern": {
+     "type": [
+      "string",
+      "object"
+     ],
+     "description": "desc#14397",
+     "properties": {
+      "pattern": {
+       "type": "string",
+       "description": "desc#14400",
+       "default": ""
+      },
+      "flags": {
+       "type": "string",
+       "description": "desc#14399",
+       "default": "",
+       "pattern": "^([gimuy]+)$",
+       "patternErrorMessage": "desc#14398"
+      }
+     }
+    }
+   }
+  },
+  "folding": {
+   "type": "object",
+   "description": "desc#14373",
+   "properties": {
+    "offSide": {
+     "type": "boolean",
+     "description": "desc#14383"
+    },
+    "markers": {
+     "type": "object",
+     "description": "desc#14374",
+     "properties": {
+      "start": {
+       "type": [
+        "string",
+        "object"
+       ],
+       "description": "desc#14379",
+       "properties": {
+        "pattern": {
+         "type": "string",
+         "description": "desc#14382",
+         "default": ""
+        },
+        "flags": {
+         "type": "string",
+         "description": "desc#14381",
+         "default": "",
+         "pattern": "^([gimuy]+)$",
+         "patternErrorMessage": "desc#14380"
+        }
+       }
+      },
+      "end": {
+       "type": [
+        "string",
+        "object"
+       ],
+       "description": "desc#14375",
+       "properties": {
+        "pattern": {
+         "type": "string",
+         "description": "desc#14378",
+         "default": ""
+        },
+        "flags": {
+         "type": "string",
+         "description": "desc#14377",
+         "default": "",
+         "pattern": "^([gimuy]+)$",
+         "patternErrorMessage": "desc#14376"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "onEnterRules": {
+   "type": "array",
+   "description": "desc#14404",
+   "items": {
+    "type": "object",
+    "description": "desc#14404",
+    "required": [
+     "beforeText",
+     "action"
+    ],
+    "properties": {
+     "beforeText": {
+      "type": [
+       "string",
+       "object"
+      ],
+      "description": "desc#14417",
+      "properties": {
+       "pattern": {
+        "type": "string",
+        "description": "desc#14420",
+        "default": ""
+       },
+       "flags": {
+        "type": "string",
+        "description": "desc#14419",
+        "default": "",
+        "pattern": "^([gimuy]+)$",
+        "patternErrorMessage": "desc#14418"
+       }
+      }
+     },
+     "afterText": {
+      "type": [
+       "string",
+       "object"
+      ],
+      "description": "desc#14413",
+      "properties": {
+       "pattern": {
+        "type": "string",
+        "description": "desc#14416",
+        "default": ""
+       },
+       "flags": {
+        "type": "string",
+        "description": "desc#14415",
+        "default": "",
+        "pattern": "^([gimuy]+)$",
+        "patternErrorMessage": "desc#14414"
+       }
+      }
+     },
+     "previousLineText": {
+      "type": [
+       "string",
+       "object"
+      ],
+      "description": "desc#14421",
+      "properties": {
+       "pattern": {
+        "type": "string",
+        "description": "desc#14424",
+        "default": ""
+       },
+       "flags": {
+        "type": "string",
+        "description": "desc#14423",
+        "default": "",
+        "pattern": "^([gimuy]+)$",
+        "patternErrorMessage": "desc#14422"
+       }
+      }
+     },
+     "action": {
+      "type": [
+       "string",
+       "object"
+      ],
+      "description": "desc#14405",
+      "required": [
+       "indent"
+      ],
+      "default": {
+       "indent": "indent"
+      },
+      "properties": {
+       "indent": {
+        "type": "string",
+        "description": "desc#14407",
+        "default": "indent",
+        "enum": [
+         "none",
+         "indent",
+         "indentOutdent",
+         "outdent"
+        ],
+        "markdownEnumDescriptions": [
+         "desc#14410",
+         "desc#14408",
+         "desc#14409",
+         "desc#14411"
+        ]
+       },
+       "appendText": {
+        "type": "string",
+        "description": "desc#14406",
+        "default": ""
+       },
+       "removeText": {
+        "type": "number",
+        "description": "desc#14412",
+        "default": 0
+       }
+      }
+     }
+    }
+   }
+  }
+ }
+}

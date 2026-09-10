@@ -1,0 +1,65 @@
+{
+  "name": "clux",
+  "displayName": "clux",
+  "description": "clux language support: syntax highlighting and tooling (M1: highlighting only)",
+  "version": "0.1.0",
+  "publisher": "clux",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AserJoker/clux-vscode.git"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "clux",
+    "language",
+    "syntax"
+  ],
+  "activationEvents": [
+    "onLanguage:clux"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "clux",
+        "aliases": [
+          "clux",
+          "clux language"
+        ],
+        "extensions": [
+          ".cx"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "clux",
+        "scopeName": "source.clux",
+        "path": "./syntaxes/clux.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "check:highlight": "node scripts/highlight-check.js",
+    "package": "vsce package --out clux-0.1.0.vsix"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.9.2",
+    "typescript": "^5.4.0",
+    "vscode-json-languageservice": "^6.0.0-next.3",
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.3.2"
+  }
+}
