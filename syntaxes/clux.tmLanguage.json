@@ -8,6 +8,7 @@
     { "include": "#strings" },
     { "include": "#characters" },
     { "include": "#numbers" },
+    { "include": "#comptime-keyword" },
     { "include": "#function-declaration" },
     { "include": "#var-declaration" },
     { "include": "#type-keywords" },
@@ -93,6 +94,10 @@
           "match": "\\b(\\d+)([iu](8|16|32|64))?\\b"
         }
       ]
+    },
+    "comptime-keyword": {
+      "match": "\\bcomptime\\b",
+      "name": "storage.modifier.clux"
     },
     "function-declaration": {
       "match": "\\b(func)\\s+([\\p{L}_][\\p{L}\\p{N}_]*)",

@@ -37,6 +37,8 @@ const wasmBin = vsco.loadWASM;
     'var u = undefined;',
     'x += 1;',
     'while x > 0 { x--; }',
+    'comptime func add(a: i32, b: i32): i32 { return a + b; }',
+    'comptime var SUM = add(1, 2);',
   ].join('\n');
 
   const lines = sample.split('\n');
@@ -55,6 +57,7 @@ const wasmBin = vsco.loadWASM;
     'keyword.operator.clux',
     'storage.type.clux',
     'variable.other.clux',
+    'storage.modifier.clux',
   ];
 
   const found = new Set();
