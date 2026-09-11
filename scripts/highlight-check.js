@@ -76,6 +76,64 @@ const wasmBin = vsco.loadWASM;
     console.error('seen scopes:', [...seen].join('\n'));
     process.exit(1);
   }
-  console.log('OK: all', expected.length, 'expected scopes produced.');
+  console.log('OK: all', expected.length, 'clux expected scopes produced.');
+
+  // ---- cxs 汇编语法冒烟测试 ----
+  const registryCxs = new vsctm.Registry({
+    onigLib: Promise.resolve({ createOnigScanner: (s) => new vsco.OnigScanner(s), createOnigString: (s) => new vsco.OnigString(s) }),
+    loadGrammar: async () => JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'syntaxes', 'cxs.tmLanguage.json'), 'utf8')),
+  });
+  const cxsGrammar = await registryCxs.loadGrammar('source.cxs');
+  if (!cxsGrammar) { console.error('FAIL: cxs grammar not loaded'); process.exit(1); }
+
+  const cxsSample = [
+    '; hello.cxs — 最小可运行示例',
+    '_start:',
+    '    push "void"',
+    '    push_bool 0',
+    '    create_func_type 0',
+    '    push_function [main]',
+    '    push_undefined',
+    '    define "main"',
+    '    halt',
+    'main:',
+    '    push_scope',
+    '    push "printf"',
+    '    push_string "hello, clux\\n"',
+    '    call 1',
+    '    pop',
+    '    pop_scope',
+    '    push_undefined',
+    '    ret',
+  ].join('\n');
+
+  const cxsExpected = [
+    'comment.line.semicolon.cxs',
+    'entity.name.label.cxs',
+    'keyword.mnemonic.cxs',
+    'keyword.directive.cxs',
+    'string.quoted.double.cxs',
+    'variable.other.label.cxs',
+    'constant.character.escape.cxs',
+    'constant.numeric.decimal.cxs',
+  ];
+
+  const cxsSeen = new Set();
+  let cxsState = null;
+  for (const line of cxsSample.split('\n')) {
+    const r = cxsGrammar.tokenizeLine(line, cxsState);
+    cxsState = r.ruleStack;
+    for (const t of r.tokens) {
+      for (const s of t.scopes) cxsSeen.add(s);
+    }
+  }
+  const cxsMissing = cxsExpected.filter((s) => !cxsSeen.has(s));
+  if (cxsMissing.length > 0) {
+    console.error('MISSING cxs scopes:', cxsMissing.join(', '));
+    console.error('seen cxs scopes:', [...cxsSeen].join('\n'));
+    process.exit(1);
+  }
+  console.log('OK: all', cxsExpected.length, 'cxs expected scopes produced.');
+
   process.exit(0);
 })().catch((e) => { console.error('FAIL:', e.message); process.exit(1); });

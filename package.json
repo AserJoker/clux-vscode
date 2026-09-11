@@ -36,6 +36,17 @@
           ".cx"
         ],
         "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "cxs",
+        "aliases": [
+          "cxs",
+          "clux assembly"
+        ],
+        "extensions": [
+          ".cxs"
+        ],
+        "configuration": "./language-configuration.cxs.json"
       }
     ],
     "grammars": [
@@ -43,6 +54,11 @@
         "language": "clux",
         "scopeName": "source.clux",
         "path": "./syntaxes/clux.tmLanguage.json"
+      },
+      {
+        "language": "cxs",
+        "scopeName": "source.cxs",
+        "path": "./syntaxes/cxs.tmLanguage.json"
       }
     ]
   },

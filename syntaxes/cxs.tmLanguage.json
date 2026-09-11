@@ -1,0 +1,86 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "cxs",
+  "scopeName": "source.cxs",
+  "fileTypes": ["cxs"],
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#labels" },
+    { "include": "#instructions" },
+    { "include": "#directives" },
+    { "include": "#strings" },
+    { "include": "#label-references" },
+    { "include": "#numbers" }
+  ],
+  "repository": {
+    "comments": {
+      "name": "comment.line.semicolon.cxs",
+      "match": ";.*$"
+    },
+    "labels": {
+      "name": "entity.name.label.cxs",
+      "match": "^\\s*([A-Za-z0-9_.-]+):",
+      "captures": {
+        "1": { "name": "entity.name.label.cxs" }
+      }
+    },
+    "label-references": {
+      "name": "variable.other.label.cxs",
+      "begin": "\\[",
+      "end": "\\]",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.label.begin.cxs" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.label.end.cxs" }
+      },
+      "patterns": [
+        {
+          "name": "variable.other.label.cxs",
+          "match": "[A-Za-z0-9_.-]+"
+        }
+      ]
+    },
+    "instructions": {
+      "name": "keyword.mnemonic.cxs",
+      "match": "(?i)\\b(add|and|bn?ot|bxor|call|cast|create_const|create_func_type|create_volatile|define|div|eq|ge|gt|halt|jmp|jnz|jz|le|load|lt|mod|mul|neg|not|or|pop|pop_scope|push|push_bool|push_function|push_i8|push_i16|push_i32|push_i64|push_scope|push_str|push_string|push_u8|push_u16|push_u32|push_u64|push_f32|push_f64|push_undefined|push_value|ret|shl|shr|store|sub)\\b"
+    },
+    "directives": {
+      "name": "keyword.directive.cxs",
+      "match": "(?i)\\.byte\\b"
+    },
+    "strings": {
+      "name": "string.quoted.double.cxs",
+      "begin": "\"",
+      "end": "\"",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.string.begin.cxs" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.string.end.cxs" }
+      },
+      "patterns": [
+        {
+          "name": "constant.character.escape.cxs",
+          "match": "\\\\(n|t|r|\\\\|\"|x[0-9a-fA-F]{1,2})"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.hex.cxs",
+          "match": "\\b0[xX][0-9a-fA-F]+\\b"
+        },
+        {
+          "name": "constant.numeric.float.cxs",
+          "match": "\\b((\\d+\\.\\d*|\\.\\d+)([eE][+-]?\\d+)?|\\d+[eE][+-]?\\d+)\\b"
+        },
+        {
+          "name": "constant.numeric.decimal.cxs",
+          "match": "\\b\\d+\\b"
+        }
+      ]
+    }
+  }
+}
