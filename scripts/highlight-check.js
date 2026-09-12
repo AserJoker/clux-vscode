@@ -89,9 +89,10 @@ const wasmBin = vsco.loadWASM;
   const cxsSample = [
     '; hello.cxs — 最小可运行示例',
     '_start:',
+    '    push_func_type',
     '    push "void"',
-    '    push_bool 0',
-    '    create_func_type 0',
+    '    func_type_return',
+    '    func_type_seal',
     '    push_function [main]',
     '    push_undefined',
     '    define "main"',
