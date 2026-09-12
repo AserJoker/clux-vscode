@@ -21,10 +21,35 @@
     "syntax"
   ],
   "activationEvents": [
-    "onLanguage:clux"
+    "onLanguage:clux",
+    "onLanguage:cxs",
+    "onCommand:clux.setBinaryPath"
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "clux",
+      "properties": {
+        "clux.binaryPath": {
+          "type": "string",
+          "default": "clux",
+          "scope": "window",
+          "markdownDescription": "Path to the clux executable used for formatting.\n\nUse an absolute path if `clux` is not on your `PATH`, e.g. `D:/projects/clux/build/clux.exe` on Windows or `/usr/local/bin/clux` on Linux/macOS."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "clux.formatDocument",
+        "title": "clux: Format Document",
+        "category": "clux"
+      },
+      {
+        "command": "clux.setBinaryPath",
+        "title": "clux: Set Binary Path",
+        "category": "clux"
+      }
+    ],
     "languages": [
       {
         "id": "clux",
