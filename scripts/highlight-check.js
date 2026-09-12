@@ -92,7 +92,7 @@ const wasmBin = vsco.loadWASM;
     '    push_func_type',
     '    push "void"',
     '    func_type_return',
-    '    func_type_seal',
+    '    seal',
     '    push_function [main]',
     '    push_undefined',
     '    define "main"',
