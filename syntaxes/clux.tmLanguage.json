@@ -148,7 +148,7 @@
     "cast-keyword": {
       "patterns": [
         {
-          "match": "\\bas\\b",
+          "match": "\\b(as|extends)\\b",
           "name": "keyword.operator.clux"
         }
       ]

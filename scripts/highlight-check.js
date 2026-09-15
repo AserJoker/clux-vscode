@@ -35,6 +35,7 @@ const wasmBin = vsco.loadWASM;
     'var c = \'z\';',
     'var ok = true && !false;',
     'var u = undefined;',
+    'var ext = i32 extends i64;',
     'x += 1;',
     'while x > 0 { x--; }',
     'comptime func add(a: i32, b: i32): i32 { return a + b; }',
